@@ -6,9 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky install",
+    "format": "prettier --write --ignore-path .gitignore ."
   },
   "dependencies": {
+    "@vanilla-extract/css": "^1.9.5",
     "next": "13.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0"
@@ -16,8 +19,18 @@
   "devDependencies": {
     "@types/node": "18.14.0",
     "@types/react": "18.0.28",
+    "@vanilla-extract/next-plugin": "^2.1.1",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.2",
+    "prettier": "^2.8.4",
     "typescript": "4.9.5"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "next lint",
+      "prettier --write"
+    ]
   }
 }
