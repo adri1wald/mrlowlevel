@@ -1,9 +1,23 @@
 import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'next-themes'
 import Head from 'next/head'
+import { Open_Sans, Playfair_Display } from '@next/font/google'
 import '@/styles/global.css'
 import '@/styles/theme.css'
-import { lightTheme, darkTheme } from '@/styles/theme.css'
+import {
+  lightTheme,
+  darkTheme,
+  PlayfairDisplay,
+  OpenSans,
+} from '@/styles/theme.css'
+
+const openSans = Open_Sans({
+  subsets: ['latin'],
+})
+
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+})
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -30,6 +44,14 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
         <meta name="msapplication-TileColor" content="#da532c" />
       </Head>
+      <style global jsx>
+        {`
+          :root {
+            ${OpenSans}: ${openSans.style.fontFamily};
+            ${PlayfairDisplay}: ${playfairDisplay.style.fontFamily};
+          }
+        `}
+      </style>
       <ThemeProvider
         disableTransitionOnChange
         attribute="class"

@@ -2,11 +2,19 @@ import {
   createGlobalTheme,
   createTheme,
   createThemeContract,
+  createVar,
   globalStyle,
 } from '@vanilla-extract/css'
+import { getVarName } from '@vanilla-extract/private'
 import { TypographicScale } from './typography'
 import { TYPOGRAPHIC_SCALE_FACTOR, TYPOGRAPHIC_SCALE_BASE } from './constants'
-import * as palette from './colors'
+import * as palette from './palette'
+
+const PlayfairDisplayVar = createVar()
+const OpenSansVar = createVar()
+
+export const PlayfairDisplay = getVarName(PlayfairDisplayVar)
+export const OpenSans = getVarName(OpenSansVar)
 
 const typographicScale = new TypographicScale(
   TYPOGRAPHIC_SCALE_FACTOR,
@@ -44,9 +52,9 @@ const root = createGlobalTheme(':root', {
     lg: '1200px',
     xl: '1400px',
   },
-  fonts: {
-    heading: 'Georgia, Times, Times New Roman, serif',
-    body: 'system-ui',
+  font: {
+    heading: PlayfairDisplayVar,
+    body: OpenSansVar,
   },
 })
 
@@ -94,6 +102,6 @@ export const vars = {
 globalStyle(':root', {
   background: vars.color.background,
   color: vars.color.text,
-  fontFamily: vars.fonts.body,
+  fontFamily: vars.font.body,
   fontSize: vars.fontSize.md,
 })
