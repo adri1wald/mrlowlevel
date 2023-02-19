@@ -1,3 +1,4 @@
+import { ThemeToggle } from '@/components/ThemeToggle'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
@@ -15,6 +16,7 @@ const Home: NextPage = () => {
 
       <main>
         <h1 className="title">Hi there I&apos;m Adrien</h1>
+        <ThemeToggle />
       </main>
     </div>
   )

@@ -1,7 +1,9 @@
 import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'next-themes'
-import { lightTheme, darkTheme } from '@/styles/theme.css'
 import Head from 'next/head'
+import '@/styles/global.css'
+import '@/styles/theme.css'
+import { lightTheme, darkTheme } from '@/styles/theme.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
