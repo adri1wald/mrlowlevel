@@ -1,14 +1,32 @@
 import { Slot } from '@radix-ui/react-slot'
+import clsx from 'clsx'
 import { forwardRef } from 'react'
+import { StyleProps, style } from './IconButton.css'
 
-type IconButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  asChild?: boolean
-}
+type IconButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+  StyleProps & {
+    asChild?: boolean
+  }
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   function IconButton(props, ref) {
-    const { asChild, ...buttonProps } = props
+    const { asChild, color, size, radius, className, variant, ...buttonProps } =
+      props
     const Root = asChild ? Slot : 'button'
-    return <Root {...buttonProps} ref={ref} />
+    return (
+      <Root
+        {...buttonProps}
+        className={clsx(
+          style({
+            color,
+            size,
+            radius,
+            variant,
+          }),
+          className,
+        )}
+        ref={ref}
+      />
+    )
   },
 )

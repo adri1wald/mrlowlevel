@@ -58,40 +58,28 @@ const root = createGlobalTheme(':root', {
   },
 })
 
-export const color = createThemeContract({
+const color = createThemeContract({
   background: '',
   surface: '',
   text: '',
   textDimmed: '',
-  neutral: palette.empty,
-  blue: palette.empty,
-  red: palette.empty,
-  green: palette.empty,
-  violet: palette.empty,
+  palette: palette.empty,
 })
 
 export const lightTheme = createTheme(color, {
   background: 'white',
-  surface: palette.light.mauve[2],
-  textDimmed: palette.light.mauve[11],
-  text: palette.light.mauve[12],
-  neutral: palette.light.mauve,
-  blue: palette.light.blue,
-  red: palette.light.red,
-  green: palette.light.green,
-  violet: palette.light.violet,
+  surface: palette.light.neutral[2],
+  textDimmed: palette.light.neutral[11],
+  text: palette.light.neutral[12],
+  palette: palette.light,
 })
 
 export const darkTheme = createTheme(color, {
-  background: palette.dark.mauve[1],
-  surface: palette.dark.mauve[2],
-  textDimmed: palette.dark.mauve[11],
-  text: palette.dark.mauve[12],
-  neutral: palette.dark.mauve,
-  blue: palette.dark.blue,
-  red: palette.dark.red,
-  green: palette.dark.green,
-  violet: palette.dark.violet,
+  background: palette.dark.neutral[1],
+  surface: palette.dark.neutral[2],
+  textDimmed: palette.dark.neutral[11],
+  text: palette.dark.neutral[12],
+  palette: palette.dark,
 })
 
 export const vars = {

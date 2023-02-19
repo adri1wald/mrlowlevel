@@ -17,7 +17,7 @@ export class TypographicScale {
   }
 }
 
-export class AbsoluteTypographicScale {
+class AbsoluteTypographicScale {
   private readonly scale: TypographicScale
   public readonly factor: number
   public readonly base: number

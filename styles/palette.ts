@@ -1,13 +1,17 @@
 import {
   mauve,
-  blue,
   red,
+  orange,
+  yellow,
   green,
+  indigo,
   violet,
   mauveDark,
-  blueDark,
   redDark,
+  orangeDark,
+  yellowDark,
   greenDark,
+  indigoDark,
   violetDark,
 } from '@radix-ui/colors'
 
@@ -38,7 +42,7 @@ function makePalette(palette: Record<string, string>, prefix: string): Palette {
   return result as Palette
 }
 
-export const empty: Palette = {
+export const emptyPalette: Palette = {
   1: '',
   2: '',
   3: '',
@@ -53,18 +57,32 @@ export const empty: Palette = {
   12: '',
 }
 
+export const empty = {
+  neutral: emptyPalette,
+  red: emptyPalette,
+  orange: emptyPalette,
+  yellow: emptyPalette,
+  green: emptyPalette,
+  indigo: emptyPalette,
+  violet: emptyPalette,
+} as const
+
 export const light = {
-  mauve: makePalette(mauve, 'mauve'),
-  blue: makePalette(blue, 'blue'),
+  neutral: makePalette(mauve, 'mauve'),
   red: makePalette(red, 'red'),
+  orange: makePalette(orange, 'orange'),
+  yellow: makePalette(yellow, 'yellow'),
   green: makePalette(green, 'green'),
+  indigo: makePalette(indigo, 'indigo'),
   violet: makePalette(violet, 'violet'),
 } as const
 
 export const dark = {
-  mauve: makePalette(mauveDark, 'mauve'),
-  blue: makePalette(blueDark, 'blue'),
+  neutral: makePalette(mauveDark, 'mauve'),
   red: makePalette(redDark, 'red'),
+  orange: makePalette(orangeDark, 'orange'),
+  yellow: makePalette(yellowDark, 'yellow'),
   green: makePalette(greenDark, 'green'),
+  indigo: makePalette(indigoDark, 'indigo'),
   violet: makePalette(violetDark, 'violet'),
 }
