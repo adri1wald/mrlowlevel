@@ -13,10 +13,12 @@ import {
 
 const openSans = Open_Sans({
   subsets: ['latin'],
+  display: 'swap',
 })
 
 const playfairDisplay = Playfair_Display({
   subsets: ['latin'],
+  display: 'swap',
 })
 
 function MyApp({ Component, pageProps }: AppProps) {
