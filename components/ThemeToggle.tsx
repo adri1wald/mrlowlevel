@@ -16,7 +16,7 @@ export function ThemeToggle() {
       type="button"
       aria-label="Toggle Dark Mode"
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      color={theme === 'dark' ? 'yellow' : 'indigo'}
+      color={theme === 'dark' ? 'yellow' : 'violet'}
     >
       {theme === 'dark' ? (
         <LightModeIcon size={16} />

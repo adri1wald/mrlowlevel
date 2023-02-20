@@ -30,6 +30,8 @@ const root = createGlobalTheme(':root', {
     xl: typographicScale.get(2),
     xxl: typographicScale.get(3),
     xxxl: typographicScale.get(4),
+    x4l: typographicScale.get(5),
+    x5l: typographicScale.get(6),
   },
   radius: {
     xs: '2px',
@@ -39,11 +41,20 @@ const root = createGlobalTheme(':root', {
     xl: '32px',
   },
   spacing: {
-    xs: '10px',
+    xxxs: '2px',
+    xxs: '4px',
+    xs: '8px',
     sm: '12px',
     md: '16px',
     lg: '20px',
     xl: '24px',
+    xxl: '32px',
+    xxxl: '40px',
+    x4l: '48px',
+    x5l: '64px',
+    x6l: '80px',
+    x7l: '96px',
+    x8l: '160px',
   },
   breakpoint: {
     xs: '576px',
@@ -55,6 +66,10 @@ const root = createGlobalTheme(':root', {
   font: {
     heading: PlayfairDisplayVar,
     body: OpenSansVar,
+  },
+  color: {
+    black: palette.black,
+    white: palette.white,
   },
 })
 
@@ -84,7 +99,10 @@ export const darkTheme = createTheme(color, {
 
 export const vars = {
   ...root,
-  color,
+  color: {
+    ...root.color,
+    ...color,
+  },
 }
 
 globalStyle(':root', {

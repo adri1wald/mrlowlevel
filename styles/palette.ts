@@ -13,6 +13,8 @@ import {
   greenDark,
   indigoDark,
   violetDark,
+  blackA,
+  whiteA,
 } from '@radix-ui/colors'
 
 type Palette = {
@@ -86,3 +88,6 @@ export const dark = {
   indigo: makePalette(indigoDark, 'indigo'),
   violet: makePalette(violetDark, 'violet'),
 }
+
+export const black = makePalette(blackA, 'blackA')
+export const white = makePalette(whiteA, 'whiteA')
