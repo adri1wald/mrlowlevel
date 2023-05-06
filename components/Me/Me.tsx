@@ -1,9 +1,9 @@
 import * as Avatar from '@radix-ui/react-avatar'
 import Portrait from '@/public/me.jpg'
 import * as styles from './Me.css'
-import { Box, BoxProps } from './Box'
+import { Box, BoxProps } from '../Box'
 
-type MeProps = BoxProps
+export type MeProps = BoxProps
 
 export function Me(props: MeProps) {
   return (

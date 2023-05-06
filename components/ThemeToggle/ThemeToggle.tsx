@@ -4,7 +4,8 @@ import {
   IconSun as LightModeIcon,
   IconMoonStars as DarkModeIcon,
 } from '@tabler/icons-react'
-import { IconButton } from './IconButton'
+import { rem } from '@/styles/utils'
+import { IconButton } from '../IconButton'
 
 export function ThemeToggle() {
   const [mounted, setMounted] = useState(false)
@@ -19,9 +20,9 @@ export function ThemeToggle() {
       color={theme === 'dark' ? 'yellow' : 'violet'}
     >
       {theme === 'dark' ? (
-        <LightModeIcon size={16} />
+        <LightModeIcon size={rem(16)} />
       ) : (
-        <DarkModeIcon size={16} />
+        <DarkModeIcon size={rem(16)} />
       )}
     </IconButton>
   )
