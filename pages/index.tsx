@@ -1,25 +1,12 @@
+import { Box } from '@/components/Box'
 import { Me } from '@/components/Me'
 import { ThemeToggle } from '@/components/ThemeToggle'
-import {
-  absolute,
-  color,
-  flex,
-  font,
-  gap,
-  justifyCenter,
-  spaced,
-  p,
-  right,
-  top,
-  rigid,
-} from '@/styles/common.css'
-import clsx from 'clsx'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
 const Home: NextPage = () => {
   return (
-    <div className={p.xxl}>
+    <Box p="xxl">
       <Head>
         <title>MrLowLevel</title>
         <meta
@@ -28,36 +15,55 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header className={clsx(flex, justifyCenter, gap.xxl)}>
-        <Me className={rigid} />
-        <div className={spaced.lg}>
+      <Box
+        as="header"
+        display="flex"
+        flexDirection={{ xs: 'column', sm: 'row' }}
+        justifyContent="center"
+        alignItems={{ xs: 'center', sm: 'flex-start' }}
+        gap="xxl"
+      >
+        <Me flex="rigid" />
+        <Box spacing="lg">
           <div>
-            <h1
-              className={clsx(font.family.heading, font.size.x4l, color.violet)}
+            <Box
+              as="h1"
+              font="heading"
+              size="x4l"
+              color="violet.12"
+              align={{
+                xs: 'center',
+                sm: 'left',
+              }}
             >
               Adrien Wald
-            </h1>
-            <h2
-              className={clsx(
-                font.family.heading,
-                font.size.lg,
-                color.dimmed.violet,
-              )}
+            </Box>
+            <Box
+              as="h2"
+              font="heading"
+              size="lg"
+              color="violet.11"
+              align={{
+                xs: 'center',
+                sm: 'left',
+              }}
             >
               A.k.a. MrLowLevel
-            </h2>
+            </Box>
           </div>
           <div>
             <p>Building and exploring in the generative AI space.</p>
-            <p className={color.dimmed.neutral}>London, United Kingdom</p>
+            <Box as="p" color="neutral.11">
+              London, United Kingdom
+            </Box>
           </div>
-        </div>
-        <div className={clsx(absolute, right.xxl, top.xxl)}>
+        </Box>
+        <Box position="absolute" top="xxl" right="xxl">
           <ThemeToggle />
-        </div>
-      </header>
+        </Box>
+      </Box>
       <main></main>
-    </div>
+    </Box>
   )
 }
 

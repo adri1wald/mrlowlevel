@@ -1,3 +1,5 @@
+import { rem } from './utils'
+
 export class TypographicScale {
   public readonly factor: number
 
@@ -12,12 +14,12 @@ export class TypographicScale {
     return Math.pow(this.factor, offset)
   }
 
-  public intoAbsolute(base: number): AbsoluteTypographicScale {
-    return new AbsoluteTypographicScale(this, base)
+  public intoRem(base: number): RemTypographicScale {
+    return new RemTypographicScale(this, base)
   }
 }
 
-class AbsoluteTypographicScale {
+class RemTypographicScale {
   private readonly scale: TypographicScale
   public readonly factor: number
   public readonly base: number
@@ -29,6 +31,6 @@ class AbsoluteTypographicScale {
   }
 
   public get(offset: number): string {
-    return `${this.base * this.scale.get(offset)}px`
+    return rem(this.base * this.scale.get(offset))
   }
 }

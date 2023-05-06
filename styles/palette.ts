@@ -1,3 +1,4 @@
+import { Expand, Recordify } from '@/utils/types'
 import {
   mauve,
   red,
@@ -17,77 +18,110 @@ import {
   whiteA,
 } from '@radix-ui/colors'
 
-type Palette = {
-  readonly 1: string
-  readonly 2: string
-  readonly 3: string
-  readonly 4: string
-  readonly 5: string
-  readonly 6: string
-  readonly 7: string
-  readonly 8: string
-  readonly 9: string
-  readonly 10: string
-  readonly 11: string
-  readonly 12: string
+type Scale = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+
+type ScaleColor<
+  Color extends string,
+  ScaleValue extends Scale,
+> = `${Color}.${ScaleValue}`
+
+export function makeScaleColor<Color extends string, ScaleValue extends Scale>(
+  color: Color,
+  scale: ScaleValue,
+): ScaleColor<Color, ScaleValue> {
+  return `${color}.${scale}` as ScaleColor<Color, ScaleValue>
 }
 
-function makePalette(palette: Record<string, string>, prefix: string): Palette {
+type ColorPalette<Color extends string> = {
+  // Color = red, then red.1, red.2, ..., red.12
+  [key in Color as ScaleColor<Color, Scale>]: string
+}
+
+function makeColorPalette<Color extends string>(
+  palette: Record<string, string>,
+  prefix: string,
+  color: Color,
+): Expand<ColorPalette<Color>> {
   const result: Record<string, string> = {}
   for (let i = 1; i <= 12; i++) {
-    const color = palette[`${prefix}${i}`]
-    if (color == null) {
+    const actualColor = palette[`${prefix}${i}`]
+    if (typeof actualColor !== 'string') {
       throw new Error(`Missing color ${prefix}${i}`)
     }
-    result[i] = color
+    result[`${color}.${i}`] = actualColor
   }
-  return result as Palette
+  return result as Expand<ColorPalette<Color>>
 }
 
-export const emptyPalette: Palette = {
-  1: '',
-  2: '',
-  3: '',
-  4: '',
-  5: '',
-  6: '',
-  7: '',
-  8: '',
-  9: '',
-  10: '',
-  11: '',
-  12: '',
+function makeEmptyColorPalette<Color extends string>(
+  color: Color,
+): Expand<ColorPalette<Color>> {
+  const result: Record<string, string> = {}
+  for (let i = 1; i <= 12; i++) {
+    result[`${color}.${i}`] = ''
+  }
+  return result as Expand<ColorPalette<Color>>
 }
 
-export const empty = {
-  neutral: emptyPalette,
-  red: emptyPalette,
-  orange: emptyPalette,
-  yellow: emptyPalette,
-  green: emptyPalette,
-  indigo: emptyPalette,
-  violet: emptyPalette,
+export const COLORS = [
+  'neutral',
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'indigo',
+  'violet',
+  'black',
+  'white',
+] as const
+
+export type Color = (typeof COLORS)[number]
+export type Palette = Expand<ColorPalette<Color>>
+
+export const color: Readonly<Recordify<Color>> = {
+  neutral: 'neutral',
+  red: 'red',
+  orange: 'orange',
+  yellow: 'yellow',
+  green: 'green',
+  indigo: 'indigo',
+  violet: 'violet',
+  black: 'black',
+  white: 'white',
+}
+
+export const empty: Palette = {
+  ...makeEmptyColorPalette('neutral'),
+  ...makeEmptyColorPalette('red'),
+  ...makeEmptyColorPalette('orange'),
+  ...makeEmptyColorPalette('yellow'),
+  ...makeEmptyColorPalette('green'),
+  ...makeEmptyColorPalette('indigo'),
+  ...makeEmptyColorPalette('violet'),
+  ...makeEmptyColorPalette('black'),
+  ...makeEmptyColorPalette('white'),
 } as const
 
-export const light = {
-  neutral: makePalette(mauve, 'mauve'),
-  red: makePalette(red, 'red'),
-  orange: makePalette(orange, 'orange'),
-  yellow: makePalette(yellow, 'yellow'),
-  green: makePalette(green, 'green'),
-  indigo: makePalette(indigo, 'indigo'),
-  violet: makePalette(violet, 'violet'),
+export const light: Palette = {
+  ...makeColorPalette(mauve, 'mauve', 'neutral'),
+  ...makeColorPalette(red, 'red', 'red'),
+  ...makeColorPalette(orange, 'orange', 'orange'),
+  ...makeColorPalette(yellow, 'yellow', 'yellow'),
+  ...makeColorPalette(green, 'green', 'green'),
+  ...makeColorPalette(indigo, 'indigo', 'indigo'),
+  ...makeColorPalette(violet, 'violet', 'violet'),
+  ...makeColorPalette(blackA, 'blackA', 'black'),
+  ...makeColorPalette(whiteA, 'whiteA', 'white'),
 } as const
 
-export const dark = {
-  neutral: makePalette(mauveDark, 'mauve'),
-  red: makePalette(redDark, 'red'),
-  orange: makePalette(orangeDark, 'orange'),
-  yellow: makePalette(yellowDark, 'yellow'),
-  green: makePalette(greenDark, 'green'),
-  indigo: makePalette(indigoDark, 'indigo'),
-  violet: makePalette(violetDark, 'violet'),
+export const dark: Palette = {
+  ...makeColorPalette(mauveDark, 'mauve', 'neutral'),
+  ...makeColorPalette(redDark, 'red', 'red'),
+  ...makeColorPalette(orangeDark, 'orange', 'orange'),
+  ...makeColorPalette(yellowDark, 'yellow', 'yellow'),
+  ...makeColorPalette(greenDark, 'green', 'green'),
+  ...makeColorPalette(indigoDark, 'indigo', 'indigo'),
+  ...makeColorPalette(violetDark, 'violet', 'violet'),
+  ...makeColorPalette(blackA, 'blackA', 'black'),
+  ...makeColorPalette(whiteA, 'whiteA', 'white'),
 }
-
-export const black = makePalette(blackA, 'blackA')
-export const white = makePalette(whiteA, 'whiteA')

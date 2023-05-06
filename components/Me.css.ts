@@ -11,7 +11,7 @@ export const root = style({
   width: '200px',
   height: '200px',
   borderRadius: '100%',
-  backgroundColor: vars.color.black[3],
+  backgroundColor: vars.color.palette['black.3'],
 })
 
 export const image = style({
@@ -28,8 +28,8 @@ export const fallback = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  backgroundColor: vars.color.palette.violet[3],
-  color: vars.color.palette.violet[11],
+  backgroundColor: vars.color.palette['violet.3'],
+  color: vars.color.palette['violet.11'],
   fontSize: vars.fontSize.md,
   fontWeight: 500,
 })

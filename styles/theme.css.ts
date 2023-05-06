@@ -9,6 +9,7 @@ import { getVarName } from '@vanilla-extract/private'
 import { TypographicScale } from './typography'
 import { TYPOGRAPHIC_SCALE_FACTOR, TYPOGRAPHIC_SCALE_BASE } from './constants'
 import * as palette from './palette'
+import { rem } from './utils'
 
 const PlayfairDisplayVar = createVar()
 const OpenSansVar = createVar()
@@ -16,9 +17,25 @@ const OpenSansVar = createVar()
 export const PlayfairDisplay = getVarName(PlayfairDisplayVar)
 export const OpenSans = getVarName(OpenSansVar)
 
-const typographicScale = new TypographicScale(
-  TYPOGRAPHIC_SCALE_FACTOR,
-).intoAbsolute(TYPOGRAPHIC_SCALE_BASE)
+const typographicScale = new TypographicScale(TYPOGRAPHIC_SCALE_FACTOR).intoRem(
+  TYPOGRAPHIC_SCALE_BASE,
+)
+
+const breakpoint = {
+  xs: '576px',
+  sm: '768px',
+  md: '992px',
+  lg: '1200px',
+  xl: '1400px',
+} as const
+
+const fontWeight = {
+  light: 300,
+  regular: 400,
+  medium: 500,
+  semi: 600,
+  bold: 700,
+} as const
 
 const root = createGlobalTheme(':root', {
   fontSize: {
@@ -34,42 +51,31 @@ const root = createGlobalTheme(':root', {
     x5l: typographicScale.get(6),
   },
   radius: {
-    xs: '2px',
-    sm: '4px',
-    md: '8px',
-    lg: '16px',
-    xl: '32px',
+    xs: rem(2),
+    sm: rem(4),
+    md: rem(8),
+    lg: rem(16),
+    xl: rem(32),
   },
   spacing: {
-    xxxs: '2px',
-    xxs: '4px',
-    xs: '8px',
-    sm: '12px',
-    md: '16px',
-    lg: '20px',
-    xl: '24px',
-    xxl: '32px',
-    xxxl: '40px',
-    x4l: '48px',
-    x5l: '64px',
-    x6l: '80px',
-    x7l: '96px',
-    x8l: '160px',
-  },
-  breakpoint: {
-    xs: '576px',
-    sm: '768px',
-    md: '992px',
-    lg: '1200px',
-    xl: '1400px',
+    xxxs: rem(2),
+    xxs: rem(4),
+    xs: rem(8),
+    sm: rem(12),
+    md: rem(16),
+    lg: rem(20),
+    xl: rem(24),
+    xxl: rem(32),
+    xxxl: rem(40),
+    x4l: rem(48),
+    x5l: rem(64),
+    x6l: rem(80),
+    x7l: rem(96),
+    x8l: rem(160),
   },
   font: {
     heading: PlayfairDisplayVar,
     body: OpenSansVar,
-  },
-  color: {
-    black: palette.black,
-    white: palette.white,
   },
 })
 
@@ -83,26 +89,25 @@ const color = createThemeContract({
 
 export const lightTheme = createTheme(color, {
   background: 'white',
-  surface: palette.light.neutral[2],
-  textDimmed: palette.light.neutral[11],
-  text: palette.light.neutral[12],
+  surface: palette.light['neutral.2'],
+  textDimmed: palette.light['neutral.11'],
+  text: palette.light['neutral.12'],
   palette: palette.light,
 })
 
 export const darkTheme = createTheme(color, {
-  background: palette.dark.neutral[1],
-  surface: palette.dark.neutral[2],
-  textDimmed: palette.dark.neutral[11],
-  text: palette.dark.neutral[12],
+  background: palette.dark['neutral.1'],
+  surface: palette.dark['neutral.2'],
+  textDimmed: palette.dark['neutral.11'],
+  text: palette.dark['neutral.12'],
   palette: palette.dark,
 })
 
 export const vars = {
   ...root,
-  color: {
-    ...root.color,
-    ...color,
-  },
+  fontWeight,
+  breakpoint,
+  color,
 }
 
 globalStyle(':root', {

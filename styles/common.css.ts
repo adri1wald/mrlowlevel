@@ -1,163 +1,117 @@
-import { globalStyle, style, styleVariants } from '@vanilla-extract/css'
+import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles'
 import { vars } from './theme.css'
+import { globalStyle, styleVariants } from '@vanilla-extract/css'
 
-/**
- * Typography
- */
-
-export const font = {
-  family: styleVariants(vars.font, (font) => ({
-    fontFamily: font,
-  })),
-  size: styleVariants(vars.fontSize, (fontSize) => ({
-    fontSize,
-  })),
-}
-
-/**
- * Color
- */
-
-export const color = {
-  ...styleVariants(vars.color.palette, (color) => ({
-    color: color[12],
-  })),
-  dimmed: styleVariants(vars.color.palette, (color) => ({
-    color: color[11],
-  })),
-}
-
-/**
- * Layout
- */
-
-export const flex = style({
-  display: 'flex',
+export const layoutProperties = defineProperties({
+  conditions: {
+    xs: {},
+    sm: { '@media': `screen and (min-width: ${vars.breakpoint.sm})` },
+    md: { '@media': `screen and (min-width: ${vars.breakpoint.md})` },
+    lg: { '@media': `screen and (min-width: ${vars.breakpoint.lg})` },
+    xl: { '@media': `screen and (min-width: ${vars.breakpoint.xl})` },
+  },
+  defaultCondition: 'xs',
+  properties: {
+    display: ['block', 'inline-block', 'inline', 'flex', 'inline-flex', 'none'],
+    position: ['static', 'relative', 'absolute', 'fixed', 'sticky'],
+    flexDirection: ['row', 'row-reverse', 'column', 'column-reverse'],
+    flexWrap: ['nowrap', 'wrap', 'wrap-reverse'],
+    alignItems: ['stretch', 'flex-start', 'flex-end', 'center', 'baseline'],
+    textAlign: ['left', 'center', 'right', 'justify'],
+    flex: {
+      rigid: '0 0 auto',
+      fluid: '1 1 0',
+    },
+    justifyContent: [
+      'flex-start',
+      'flex-end',
+      'center',
+      'space-between',
+      'space-around',
+      'space-evenly',
+    ],
+    margin: { ...vars.spacing, auto: 'auto' },
+    marginTop: { ...vars.spacing, auto: 'auto' },
+    marginRight: { ...vars.spacing, auto: 'auto' },
+    marginBottom: { ...vars.spacing, auto: 'auto' },
+    marginLeft: { ...vars.spacing, auto: 'auto' },
+    padding: vars.spacing,
+    paddingTop: vars.spacing,
+    paddingRight: vars.spacing,
+    paddingBottom: vars.spacing,
+    paddingLeft: vars.spacing,
+    top: vars.spacing,
+    right: vars.spacing,
+    bottom: vars.spacing,
+    left: vars.spacing,
+    inset: vars.spacing,
+    gap: vars.spacing,
+  },
+  shorthands: {
+    m: ['margin'],
+    mx: ['marginLeft', 'marginRight'],
+    my: ['marginTop', 'marginBottom'],
+    mt: ['marginTop'],
+    mr: ['marginRight'],
+    mb: ['marginBottom'],
+    ml: ['marginLeft'],
+    p: ['padding'],
+    px: ['paddingLeft', 'paddingRight'],
+    py: ['paddingTop', 'paddingBottom'],
+    pt: ['paddingTop'],
+    pr: ['paddingRight'],
+    pb: ['paddingBottom'],
+    pl: ['paddingLeft'],
+    placeItems: ['alignItems', 'justifyContent'],
+    align: ['textAlign'],
+  },
 })
 
-export const column = style({
-  flexDirection: 'column',
+export const fontProperties = defineProperties({
+  properties: {
+    fontFamily: vars.font,
+    fontSize: vars.fontSize,
+    fontWeight: vars.fontWeight,
+  },
+  shorthands: {
+    font: ['fontFamily'],
+    size: ['fontSize'],
+    weight: ['fontWeight'],
+  },
 })
 
-export const row = style({
-  flexDirection: 'row',
+export const colorProperties = defineProperties({
+  conditions: {
+    default: {},
+    hover: { selector: '&:hover' },
+    active: { selector: '&:active' },
+    focus: { selector: '&:focus' },
+  },
+  defaultCondition: 'default',
+  properties: {
+    color: vars.color.palette,
+    backgroundColor: vars.color.palette,
+  },
+  shorthands: {
+    bg: ['backgroundColor'],
+  },
 })
 
-export const alignCenter = style({
-  alignItems: 'center',
-})
+export const sprinkles = createSprinkles(
+  layoutProperties,
+  fontProperties,
+  colorProperties,
+)
 
-export const justifyCenter = style({
-  justifyContent: 'center',
-})
+export type Sprinkles = Parameters<typeof sprinkles>[0]
 
-export const rigid = style({
-  flex: '0 0 auto',
-})
+export const spacing = styleVariants(vars.spacing, () => ({}))
 
-export const grow = style({
-  flex: '1 0 0',
-})
-
-export const absolute = style({
-  position: 'absolute',
-})
-
-/**
- * Spacing
- */
-
-export const p = styleVariants(vars.spacing, (spacing) => ({
-  padding: spacing,
-}))
-
-export const pt = styleVariants(vars.spacing, (spacing) => ({
-  paddingTop: spacing,
-}))
-
-export const pr = styleVariants(vars.spacing, (spacing) => ({
-  paddingRight: spacing,
-}))
-
-export const pb = styleVariants(vars.spacing, (spacing) => ({
-  paddingBottom: spacing,
-}))
-
-export const pl = styleVariants(vars.spacing, (spacing) => ({
-  paddingLeft: spacing,
-}))
-
-export const px = styleVariants(vars.spacing, (spacing) => ({
-  paddingLeft: spacing,
-  paddingRight: spacing,
-}))
-
-export const py = styleVariants(vars.spacing, (spacing) => ({
-  paddingTop: spacing,
-  paddingBottom: spacing,
-}))
-
-export const m = styleVariants(vars.spacing, (spacing) => ({
-  margin: spacing,
-}))
-
-export const mt = styleVariants(vars.spacing, (spacing) => ({
-  marginTop: spacing,
-}))
-
-export const mr = styleVariants(vars.spacing, (spacing) => ({
-  marginRight: spacing,
-}))
-
-export const mb = styleVariants(vars.spacing, (spacing) => ({
-  marginBottom: spacing,
-}))
-
-export const ml = styleVariants(vars.spacing, (spacing) => ({
-  marginLeft: spacing,
-}))
-
-export const mx = styleVariants(vars.spacing, (spacing) => ({
-  marginLeft: spacing,
-  marginRight: spacing,
-}))
-
-export const my = styleVariants(vars.spacing, (spacing) => ({
-  marginTop: spacing,
-  marginBottom: spacing,
-}))
-
-export const gap = styleVariants(vars.spacing, (spacing) => ({
-  gap: spacing,
-}))
-
-export const inset = styleVariants(vars.spacing, (spacing) => ({
-  inset: spacing,
-}))
-
-export const top = styleVariants(vars.spacing, (spacing) => ({
-  top: spacing,
-}))
-
-export const right = styleVariants(vars.spacing, (spacing) => ({
-  right: spacing,
-}))
-
-export const bottom = styleVariants(vars.spacing, (spacing) => ({
-  bottom: spacing,
-}))
-
-export const left = styleVariants(vars.spacing, (spacing) => ({
-  left: spacing,
-}))
-
-export const spaced = styleVariants(vars.spacing, () => ({}))
-
-for (const [spacing, className] of Object.entries(spaced) as [
-  keyof typeof spaced,
+for (const [spacingValue, className] of Object.entries(spacing) as [
+  keyof typeof spacing,
   string,
 ][]) {
   globalStyle(`${className} > * + *`, {
-    marginTop: vars.spacing[spacing],
+    marginTop: vars.spacing[spacingValue],
   })
 }

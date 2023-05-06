@@ -1,4 +1,6 @@
-type AnyRecord = Record<string, any>
+import { Expand } from './types'
+
+type AnyRecord = Record<PropertyKey, any>
 type RecordValueUnion<T extends AnyRecord> = T[keyof T]
 type ReplaceRecordValueType<T extends AnyRecord, U> = T extends infer O
   ? {
@@ -9,10 +11,10 @@ type ReplaceRecordValueType<T extends AnyRecord, U> = T extends infer O
 export function transformValues<T extends AnyRecord, U>(
   obj: T,
   fn: (value: RecordValueUnion<T>, key: string) => U,
-): ReplaceRecordValueType<T, U> {
+): Expand<ReplaceRecordValueType<T, U>> {
   return Object.keys(obj).reduce((acc, key) => {
     // @ts-ignore
     acc[key] = fn(obj[key], key)
     return acc
-  }, {} as ReplaceRecordValueType<T, U>)
+  }, {} as ReplaceRecordValueType<T, U>) as Expand<ReplaceRecordValueType<T, U>>
 }
