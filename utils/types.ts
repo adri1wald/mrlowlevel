@@ -3,7 +3,3 @@ export type Expand<T> = T extends object
     ? { [K in keyof O]: O[K] }
     : never
   : T
-
-export type Recordify<T extends PropertyKey> = Expand<{
-  [K in T]: K
-}>

@@ -2,14 +2,15 @@ import { recipe, RecipeVariants } from '@vanilla-extract/recipes'
 import { vars } from '@/styles/theme.css'
 import { transformValues } from '@/utils/common'
 import { Expand } from '@/utils/types'
-import { color, makeScaleColor } from '@/styles/palette'
+import { mapColors } from '@/styles/palette'
+import { rem } from '@/styles/utils'
 
 export const sizes = {
-  xs: 18,
-  sm: 22,
-  md: 28,
-  lg: 34,
-  xl: 44,
+  xs: rem(18),
+  sm: rem(22),
+  md: rem(28),
+  lg: rem(34),
+  xl: rem(44),
 }
 
 export const style = recipe({
@@ -22,14 +23,14 @@ export const style = recipe({
   },
 
   variants: {
-    color: transformValues(color, (color) => ({
-      color: vars.color.palette[makeScaleColor(color, 11)],
-      backgroundColor: vars.color.palette[makeScaleColor(color, 3)],
+    color: mapColors((getScale) => ({
+      color: vars.color.palette[getScale(11)],
+      backgroundColor: vars.color.palette[getScale(3)],
       ':hover': {
-        backgroundColor: vars.color.palette[makeScaleColor(color, 4)],
+        backgroundColor: vars.color.palette[getScale(4)],
       },
       ':active': {
-        backgroundColor: vars.color.palette[makeScaleColor(color, 5)],
+        backgroundColor: vars.color.palette[getScale(5)],
       },
     })),
     size: transformValues(sizes, (value) => ({

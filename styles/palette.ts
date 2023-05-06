@@ -1,4 +1,3 @@
-import { Expand, Recordify } from '@/utils/types'
 import {
   mauve,
   red,
@@ -17,6 +16,7 @@ import {
   blackA,
   whiteA,
 } from '@radix-ui/colors'
+import { Expand } from '@/utils/types'
 
 type Scale = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 
@@ -78,16 +78,19 @@ export const COLORS = [
 export type Color = (typeof COLORS)[number]
 export type Palette = Expand<ColorPalette<Color>>
 
-export const color: Readonly<Recordify<Color>> = {
-  neutral: 'neutral',
-  red: 'red',
-  orange: 'orange',
-  yellow: 'yellow',
-  green: 'green',
-  indigo: 'indigo',
-  violet: 'violet',
-  black: 'black',
-  white: 'white',
+export const mapColors = <Output>(
+  fn: (
+    getScale: <ScaleValue extends Scale>(
+      scale: ScaleValue,
+    ) => ScaleColor<Color, ScaleValue>,
+    color: Color,
+  ) => Output,
+): Record<Color, Output> => {
+  const result: Record<Color, Output> = {} as any
+  for (const color of COLORS) {
+    result[color] = fn((scale) => makeScaleColor(color, scale), color)
+  }
+  return result
 }
 
 export const empty: Palette = {
