@@ -6,9 +6,9 @@ import {
   globalStyle,
 } from '@vanilla-extract/css'
 import { getVarName } from '@vanilla-extract/private'
-import { TypographicScale } from './typography'
-import { TYPOGRAPHIC_SCALE_FACTOR, TYPOGRAPHIC_SCALE_BASE } from './constants'
+import { TYPOGRAPHIC_SCALE_BASE, TYPOGRAPHIC_SCALE_FACTOR } from './constants'
 import * as palette from './palette'
+import { TypographicScale } from './typography'
 import { rem } from './utils'
 
 const PlayfairDisplayVar = createVar()

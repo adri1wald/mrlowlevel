@@ -1,6 +1,6 @@
+import { globalStyle, styleVariants } from '@vanilla-extract/css'
 import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles'
 import { vars } from './theme.css'
-import { globalStyle, styleVariants } from '@vanilla-extract/css'
 
 export const layoutProperties = defineProperties({
   conditions: {

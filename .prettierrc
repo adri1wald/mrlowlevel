@@ -2,5 +2,17 @@
   "trailingComma": "all",
   "tabWidth": 2,
   "semi": false,
-  "singleQuote": true
+  "singleQuote": true,
+  "importOrder": [
+    "^react$",
+    "^react",
+    "^next$",
+    "^next",
+    "^@next",
+    "<THIRD_PARTY_MODULES>",
+    "^@/(.*)$",
+    "^./(.*)",
+    "^[./]"
+  ],
+  "importOrderSortSpecifiers": true
 }

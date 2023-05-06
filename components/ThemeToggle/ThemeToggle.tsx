@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
 import {
-  IconSun as LightModeIcon,
   IconMoonStars as DarkModeIcon,
+  IconSun as LightModeIcon,
 } from '@tabler/icons-react'
 import { rem } from '@/styles/utils'
 import { IconButton } from '../IconButton'

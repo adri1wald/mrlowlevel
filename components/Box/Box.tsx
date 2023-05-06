@@ -1,7 +1,7 @@
-import { sprinkles, Sprinkles, spacing } from '@/styles/common.css'
-import { createPolymorphicComponent } from '@/utils/react'
-import clsx from 'clsx'
 import { forwardRef } from 'react'
+import clsx from 'clsx'
+import { Sprinkles, spacing, sprinkles } from '@/styles/common.css'
+import { createPolymorphicComponent } from '@/utils/react'
 
 export type BoxProps = React.PropsWithChildren<
   Sprinkles & {

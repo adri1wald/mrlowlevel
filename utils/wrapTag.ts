@@ -1,4 +1,4 @@
-import { forwardRef, createElement } from 'react'
+import { createElement, forwardRef } from 'react'
 import clsx from 'clsx'
 
 type ExtendedProps<_ExtendedProps = {}, OverrideProps = {}> = OverrideProps &

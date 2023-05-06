@@ -1,8 +1,8 @@
+import type { NextPage } from 'next'
+import Head from 'next/head'
 import { Box } from '@/components/Box'
 import { Me } from '@/components/Me'
 import { ThemeToggle } from '@/components/ThemeToggle'
-import type { NextPage } from 'next'
-import Head from 'next/head'
 
 const Home: NextPage = () => {
   return (

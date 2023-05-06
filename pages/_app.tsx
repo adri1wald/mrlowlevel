@@ -1,14 +1,14 @@
-import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'next-themes'
+import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { Open_Sans, Playfair_Display } from '@next/font/google'
 import '@/styles/global.css'
 import '@/styles/theme.css'
 import {
-  lightTheme,
-  darkTheme,
-  PlayfairDisplay,
   OpenSans,
+  PlayfairDisplay,
+  darkTheme,
+  lightTheme,
 } from '@/styles/theme.css'
 
 const openSans = Open_Sans({

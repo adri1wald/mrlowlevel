@@ -1,9 +1,9 @@
-import { recipe, RecipeVariants } from '@vanilla-extract/recipes'
+import { RecipeVariants, recipe } from '@vanilla-extract/recipes'
+import { mapColors } from '@/styles/palette'
 import { vars } from '@/styles/theme.css'
+import { rem } from '@/styles/utils'
 import { transformValues } from '@/utils/common'
 import { Expand } from '@/utils/types'
-import { mapColors } from '@/styles/palette'
-import { rem } from '@/styles/utils'
 
 export const sizes = {
   xs: rem(18),
