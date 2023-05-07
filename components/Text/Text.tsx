@@ -49,22 +49,14 @@ const _TextComponent = forwardRef<
   HTMLParagraphElement,
   TextProps & { as: any }
 >(function Text(props, ref) {
-  const {
-    as = 'p',
-    font,
-    size,
-    weight,
-    color = 'neutral',
-    dimmed,
-    ...delegated
-  } = props
+  const { as = 'p', font, size, weight, color, dimmed, ...delegated } = props
 
   const isHeading = isHeadingTag(as)
   const fontFamily: Font = font ?? (isHeading ? 'heading' : 'body')
   const fontSize: Size = size ?? (isHeading ? getHeadingSize(as) : 'md')
   const fontWeight: Weight = weight ?? (isHeading ? 'bold' : 'regular')
   const resolvedColor: ScaleColor<Color> = getScaleColor(
-    color,
+    color ?? (isHeading ? 'violet' : 'neutral'),
     dimmed ? 11 : 12,
   )
 

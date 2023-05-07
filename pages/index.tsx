@@ -33,7 +33,6 @@ const Home: NextPage = () => {
           <Box spacing="lg">
             <div>
               <Text.H1
-                color="violet"
                 align={{
                   xs: 'center',
                   sm: 'left',
@@ -43,7 +42,6 @@ const Home: NextPage = () => {
               </Text.H1>
               <Text.H3
                 size="lg"
-                color="violet"
                 dimmed
                 align={{
                   xs: 'center',
