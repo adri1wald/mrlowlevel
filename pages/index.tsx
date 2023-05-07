@@ -2,12 +2,13 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { Box } from '@/components/Box'
 import { Me } from '@/components/Me'
+import { Header, Main } from '@/components/Semantic'
 import { Text } from '@/components/Text'
 import { ThemeToggle } from '@/components/ThemeToggle'
 
 const Home: NextPage = () => {
   return (
-    <Box p="xxl">
+    <Box p="xxl" spacing="xxl">
       <Head>
         <title>MrLowLevel</title>
         <meta
@@ -16,8 +17,7 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Box
-        as="header"
+      <Header
         display="flex"
         flexDirection={{ xs: 'column', sm: 'row' }}
         justifyContent="center"
@@ -55,8 +55,8 @@ const Home: NextPage = () => {
         <Box position="absolute" top="xxl" right="xxl">
           <ThemeToggle />
         </Box>
-      </Box>
-      <main></main>
+      </Header>
+      <Main></Main>
     </Box>
   )
 }
