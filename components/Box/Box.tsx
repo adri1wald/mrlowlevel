@@ -2,12 +2,15 @@ import { forwardRef } from 'react'
 import clsx from 'clsx'
 import { Sprinkles, spacing, sprinkles } from '@/styles/common.css'
 import { createPolymorphicComponent } from '@/utils/react'
+import { Expand } from '@/utils/types'
 
 export type BoxProps = React.PropsWithChildren<
-  Sprinkles & {
-    className?: string
-    spacing?: keyof typeof spacing
-  }
+  Expand<
+    Sprinkles & {
+      className?: string
+      spacing?: keyof typeof spacing
+    }
+  >
 >
 
 const _Box = forwardRef<HTMLDivElement, BoxProps & { as: any }>(function Box(

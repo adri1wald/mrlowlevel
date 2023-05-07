@@ -3,6 +3,7 @@ import { RecipeVariants, recipe } from '@vanilla-extract/recipes'
 import { focusRing } from '@/styles/common.css'
 import { mapColors } from '@/styles/palette'
 import { vars } from '@/styles/theme.css'
+import { rem } from '@/styles/utils'
 import { pick, transformValues } from '@/utils/common'
 import { Expand } from '@/utils/types'
 
@@ -12,6 +13,7 @@ const sizes = transformValues(
 )
 
 export const style = recipe({
+  // base button styles
   base: {
     display: 'inline-flex',
     alignItems: 'center',
@@ -20,6 +22,9 @@ export const style = recipe({
     border: 'none',
     userSelect: 'none',
     cursor: 'pointer',
+    textDecoration: 'none',
+    whiteSpace: 'nowrap',
+    appearance: 'none',
   },
 
   variants: {
@@ -36,13 +41,19 @@ export const style = recipe({
         },
       },
     ]),
-    size: transformValues(sizes, (value) => ({
-      width: value,
+    size: transformValues(sizes, (value, key) => ({
       height: value,
+      paddingInline: vars.spacing[key],
+      fontSize: vars.fontSize[key],
     })),
-    radius: transformValues(vars.radius, (value) => ({
-      borderRadius: value,
-    })),
+    radius: {
+      ...transformValues(vars.radius, (value) => ({
+        borderRadius: value,
+      })),
+      pill: {
+        borderRadius: rem(99999),
+      },
+    },
     variant: {
       transparent: {
         backgroundColor: 'transparent',
@@ -57,4 +68,4 @@ export const style = recipe({
   },
 })
 
-export type StyleProps = Expand<RecipeVariants<typeof style>>
+export type StyleProps = Expand<NonNullable<RecipeVariants<typeof style>>>

@@ -1,6 +1,8 @@
 import { globalStyle, styleVariants } from '@vanilla-extract/css'
 import { createSprinkles, defineProperties } from '@vanilla-extract/sprinkles'
+import { colors, makeScaleColor } from './palette'
 import { vars } from './theme.css'
+import { rem } from './utils'
 
 export const layoutProperties = defineProperties({
   conditions: {
@@ -12,7 +14,15 @@ export const layoutProperties = defineProperties({
   },
   defaultCondition: 'xs',
   properties: {
-    display: ['block', 'inline-block', 'inline', 'flex', 'inline-flex', 'none'],
+    display: [
+      'block',
+      'inline-block',
+      'inline',
+      'flex',
+      'inline-flex',
+      'flow-root',
+      'none',
+    ],
     position: ['static', 'relative', 'absolute', 'fixed', 'sticky'],
     flexDirection: ['row', 'row-reverse', 'column', 'column-reverse'],
     flexWrap: ['nowrap', 'wrap', 'wrap-reverse'],
@@ -110,3 +120,17 @@ for (const [spacingValue, className] of Object.entries(spacing) as [
     marginTop: vars.spacing[spacingValue],
   })
 }
+
+export const focusRing = styleVariants(colors, (color) => ({
+  WebkitTapHighlightColor: 'transparent',
+  ':focus': {
+    outlineOffset: rem(2),
+    // TODO: this should be 7 but 8 looks better - maybe revisit...
+    outline: `${rem(2)} solid ${vars.color.palette[makeScaleColor(color, 8)]}`,
+  },
+  selectors: {
+    '&:focus:not(:focus-visible)': {
+      outline: 'none',
+    },
+  },
+}))

@@ -10,11 +10,11 @@ type ReplaceRecordValueType<T extends AnyRecord, U> = T extends infer O
 
 export function transformValues<T extends AnyRecord, U>(
   obj: T,
-  fn: (value: RecordValueUnion<T>, key: string) => U,
+  fn: (value: RecordValueUnion<T>, key: keyof T) => U,
 ): Expand<ReplaceRecordValueType<T, U>> {
   return Object.keys(obj).reduce((acc, key) => {
     // @ts-ignore
-    acc[key] = fn(obj[key], key)
+    acc[key] = fn(obj[key], key as keyof T)
     return acc
   }, {} as ReplaceRecordValueType<T, U>) as Expand<ReplaceRecordValueType<T, U>>
 }
@@ -25,4 +25,37 @@ export function transformValues<T extends AnyRecord, U>(
  */
 export function assertNever(x: never): never {
   throw new Error(`Unexpected object: ${x}`)
+}
+
+/**
+ * A function that turns a list of property keys into a record where each value is the key itself.
+ */
+export function convertKeysToRecord<Key extends PropertyKey>(
+  keys: readonly Key[],
+): Readonly<{
+  [K in Key]: K
+}> {
+  return keys.reduce(
+    (acc, key) => {
+      acc[key] = key
+      return acc
+    },
+    {} as {
+      [K in Key]: K
+    },
+  )
+}
+
+/**
+ * A function that picks a subset of properties from an object.
+ */
+export function pick<T extends AnyRecord, K extends keyof T>(
+  obj: T,
+  keys: readonly K[],
+): Pick<T, K> {
+  const reduced: Pick<T, K> = {} as Pick<T, K>
+  for (const key of keys) {
+    reduced[key] = obj[key]
+  }
+  return reduced
 }

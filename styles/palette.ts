@@ -1,9 +1,9 @@
 import {
   blackA,
+  blue,
+  blueDark,
   green,
   greenDark,
-  indigo,
-  indigoDark,
   mauve,
   mauveDark,
   orange,
@@ -16,6 +16,7 @@ import {
   yellow,
   yellowDark,
 } from '@radix-ui/colors'
+import { convertKeysToRecord } from '@/utils/common'
 import { Expand } from '@/utils/types'
 
 type Scale = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
@@ -69,7 +70,7 @@ export const COLORS = [
   'orange',
   'yellow',
   'green',
-  'indigo',
+  'blue',
   'violet',
   'black',
   'white',
@@ -77,6 +78,8 @@ export const COLORS = [
 
 export type Color = (typeof COLORS)[number]
 export type Palette = Expand<ColorPalette<Color>>
+
+export const colors = convertKeysToRecord(COLORS)
 
 export const mapColors = <Output>(
   fn: (
@@ -99,7 +102,7 @@ export const empty: Palette = {
   ...makeEmptyColorPalette('orange'),
   ...makeEmptyColorPalette('yellow'),
   ...makeEmptyColorPalette('green'),
-  ...makeEmptyColorPalette('indigo'),
+  ...makeEmptyColorPalette('blue'),
   ...makeEmptyColorPalette('violet'),
   ...makeEmptyColorPalette('black'),
   ...makeEmptyColorPalette('white'),
@@ -111,7 +114,7 @@ export const light: Palette = {
   ...makeColorPalette(orange, 'orange', 'orange'),
   ...makeColorPalette(yellow, 'yellow', 'yellow'),
   ...makeColorPalette(green, 'green', 'green'),
-  ...makeColorPalette(indigo, 'indigo', 'indigo'),
+  ...makeColorPalette(blue, 'blue', 'blue'),
   ...makeColorPalette(violet, 'violet', 'violet'),
   ...makeColorPalette(blackA, 'blackA', 'black'),
   ...makeColorPalette(whiteA, 'whiteA', 'white'),
@@ -123,7 +126,7 @@ export const dark: Palette = {
   ...makeColorPalette(orangeDark, 'orange', 'orange'),
   ...makeColorPalette(yellowDark, 'yellow', 'yellow'),
   ...makeColorPalette(greenDark, 'green', 'green'),
-  ...makeColorPalette(indigoDark, 'indigo', 'indigo'),
+  ...makeColorPalette(blueDark, 'blue', 'blue'),
   ...makeColorPalette(violetDark, 'violet', 'violet'),
   ...makeColorPalette(blackA, 'blackA', 'black'),
   ...makeColorPalette(whiteA, 'whiteA', 'white'),
