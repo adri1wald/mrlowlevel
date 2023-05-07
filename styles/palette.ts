@@ -72,8 +72,6 @@ export const COLORS = [
   'green',
   'blue',
   'violet',
-  'black',
-  'white',
 ] as const
 
 export type Color = (typeof COLORS)[number]
@@ -130,6 +128,11 @@ export const mapColors = <Output>(
   return result
 }
 
+export const shades = {
+  ...makeColorPalette(blackA, 'blackA', 'black'),
+  ...makeColorPalette(whiteA, 'whiteA', 'white'),
+} as const
+
 export const empty: Palette = {
   ...makeEmptyColorPalette('neutral'),
   ...makeEmptyColorPalette('red'),
@@ -138,8 +141,6 @@ export const empty: Palette = {
   ...makeEmptyColorPalette('green'),
   ...makeEmptyColorPalette('blue'),
   ...makeEmptyColorPalette('violet'),
-  ...makeEmptyColorPalette('black'),
-  ...makeEmptyColorPalette('white'),
 } as const
 
 export const light: Palette = {
@@ -150,8 +151,6 @@ export const light: Palette = {
   ...makeColorPalette(green, 'green', 'green'),
   ...makeColorPalette(blue, 'blue', 'blue'),
   ...makeColorPalette(violet, 'violet', 'violet'),
-  ...makeColorPalette(blackA, 'blackA', 'black'),
-  ...makeColorPalette(whiteA, 'whiteA', 'white'),
 } as const
 
 export const dark: Palette = {
@@ -162,6 +161,4 @@ export const dark: Palette = {
   ...makeColorPalette(greenDark, 'green', 'green'),
   ...makeColorPalette(blueDark, 'blue', 'blue'),
   ...makeColorPalette(violetDark, 'violet', 'violet'),
-  ...makeColorPalette(blackA, 'blackA', 'black'),
-  ...makeColorPalette(whiteA, 'whiteA', 'white'),
 }

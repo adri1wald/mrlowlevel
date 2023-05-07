@@ -58,26 +58,26 @@ export const style = recipe({
       focusRing[color],
       {
         vars: assignVars(buttonColors, {
-          color: vars.color.palette[getScale(11)],
+          color: vars.palette.color[getScale(11)],
 
           subtleBg: 'transparent',
-          subtleBgHover: vars.color.palette[getScale(4)],
-          subtleBgActive: vars.color.palette[getScale(5)],
+          subtleBgHover: vars.palette.color[getScale(4)],
+          subtleBgActive: vars.palette.color[getScale(5)],
 
-          lightBg: vars.color.palette[getScale(3)],
-          lightBgHover: vars.color.palette[getScale(4)],
-          lightBgActive: vars.color.palette[getScale(5)],
+          lightBg: vars.palette.color[getScale(3)],
+          lightBgHover: vars.palette.color[getScale(4)],
+          lightBgActive: vars.palette.color[getScale(5)],
 
-          lightCtaBg: vars.color.palette[getScale(4)],
-          lightCtaBgHover: vars.color.palette[getScale(5)],
-          lightCtaBgActive: vars.color.palette[getScale(6)],
+          lightCtaBg: vars.palette.color[getScale(4)],
+          lightCtaBgHover: vars.palette.color[getScale(5)],
+          lightCtaBgActive: vars.palette.color[getScale(6)],
 
           filledColor: shouldUseDarkForegroundText(color)
-            ? vars.color.palette['black.12']
-            : vars.color.palette['white.12'],
-          filledBg: vars.color.palette[getScale(9)],
-          filledBgHover: vars.color.palette[getScale(10)],
-          filledBgActive: vars.color.palette[getScale(10)],
+            ? vars.palette.shades['black.12']
+            : vars.palette.shades['white.12'],
+          filledBg: vars.palette.color[getScale(9)],
+          filledBgHover: vars.palette.color[getScale(10)],
+          filledBgActive: vars.palette.color[getScale(10)],
         }),
       },
     ]),

@@ -161,42 +161,48 @@ const root = createGlobalTheme(':root', {
     heading: PlayfairDisplayVar,
     body: OpenSansVar,
   },
+  palette: {
+    shades: palette.shades,
+  },
 })
 
-const color = createThemeContract({
+const paletteContract = createThemeContract({
   background: '',
   surface: '',
   text: '',
   textDimmed: '',
-  palette: palette.empty,
+  color: palette.empty,
 })
 
-export const lightTheme = createTheme(color, {
+export const lightTheme = createTheme(paletteContract, {
   background: 'white',
   surface: palette.light['neutral.2'],
   textDimmed: palette.light['neutral.11'],
   text: palette.light['neutral.12'],
-  palette: palette.light,
+  color: palette.light,
 })
 
-export const darkTheme = createTheme(color, {
+export const darkTheme = createTheme(paletteContract, {
   background: palette.dark['neutral.1'],
   surface: palette.dark['neutral.2'],
   textDimmed: palette.dark['neutral.11'],
   text: palette.dark['neutral.12'],
-  palette: palette.dark,
+  color: palette.dark,
 })
 
 export const vars = {
   ...root,
   fontWeight,
   breakpoint,
-  color,
+  palette: {
+    ...root.palette,
+    ...paletteContract,
+  },
 }
 
 globalStyle(':root', {
-  background: vars.color.background,
-  color: vars.color.text,
+  background: vars.palette.background,
+  color: vars.palette.text,
   fontFamily: vars.font.body,
   fontSize: vars.fontSize.md,
 })

@@ -49,13 +49,13 @@ export function convertKeysToRecord<Key extends PropertyKey>(
 /**
  * A function that picks a subset of properties from an object.
  */
-export function pick<T extends AnyRecord, K extends keyof T>(
-  obj: T,
-  keys: readonly K[],
-): Expand<Pick<T, K>> {
-  const reduced: Pick<T, K> = {} as Pick<T, K>
+export function pick<
+  Obj extends AnyRecord,
+  Keys extends readonly (keyof Obj)[],
+>(obj: Obj, keys: Keys): Expand<Pick<Obj, Keys[number]>> {
+  const reduced: Pick<Obj, Keys[number]> = {} as Pick<Obj, Keys[number]>
   for (const key of keys) {
     reduced[key] = obj[key]
   }
-  return reduced as Expand<Pick<T, K>>
+  return reduced as Expand<Pick<Obj, Keys[number]>>
 }

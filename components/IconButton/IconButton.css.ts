@@ -33,13 +33,13 @@ export const style = recipe({
     color: mapColors((getScale, color) => [
       focusRing[color],
       {
-        color: vars.color.palette[getScale(11)],
-        backgroundColor: vars.color.palette[getScale(3)],
+        color: vars.palette.color[getScale(11)],
+        backgroundColor: vars.palette.color[getScale(3)],
         ':hover': {
-          backgroundColor: vars.color.palette[getScale(4)],
+          backgroundColor: vars.palette.color[getScale(4)],
         },
         ':active': {
-          backgroundColor: vars.color.palette[getScale(5)],
+          backgroundColor: vars.palette.color[getScale(5)],
         },
       },
     ]),

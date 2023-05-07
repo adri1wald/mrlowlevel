@@ -162,8 +162,8 @@ export const colorProperties = defineProperties({
   },
   defaultCondition: 'default',
   properties: {
-    color: vars.color.palette,
-    backgroundColor: vars.color.palette,
+    color: vars.palette.color,
+    backgroundColor: vars.palette.color,
   },
   shorthands: {
     bg: ['backgroundColor'],
@@ -194,7 +194,7 @@ export const focusRing = styleVariants(colors, (color) => ({
   ':focus': {
     outlineOffset: rem(2),
     // TODO: this should be 7 but 8 looks better - maybe revisit...
-    outline: `${rem(2)} solid ${vars.color.palette[makeScaleColor(color, 8)]}`,
+    outline: `${rem(2)} solid ${vars.palette.color[makeScaleColor(color, 8)]}`,
   },
   selectors: {
     '&:focus:not(:focus-visible)': {
