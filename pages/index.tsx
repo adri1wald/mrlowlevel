@@ -58,7 +58,12 @@ const Home: NextPage = () => {
                   sm: 'left',
                 }}
               >
-                Building and exploring in the generative AI space.
+                <Text.Span whiteSpace="nowrap">
+                  Building and exploring in
+                </Text.Span>{' '}
+                <Text.Span whiteSpace="nowrap">
+                  the generative AI space.
+                </Text.Span>
               </Text.P>
               <Text.P
                 dimmed
