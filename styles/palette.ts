@@ -79,6 +79,19 @@ export const COLORS = [
 export type Color = (typeof COLORS)[number]
 export type Palette = Expand<ColorPalette<Color>>
 
+// from radix-ui color docs
+const COLORS_WITH_DARK_FOREGROUND_TEXT = [
+  'sky',
+  'mint',
+  'lime',
+  'yellow',
+  'amber',
+] as const
+
+export function shouldUseDarkForegroundText(color: Color) {
+  return COLORS_WITH_DARK_FOREGROUND_TEXT.includes(color as any)
+}
+
 export const colors = convertKeysToRecord(COLORS)
 
 export const mapColors = <Output>(
