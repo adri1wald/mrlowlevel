@@ -29,11 +29,11 @@ function isHeadingTag(tag: string): tag is HeadingTag {
 function getHeadingSize(tag: HeadingTag): Size {
   switch (tag) {
     case 'h1':
-      return 'x4l'
+      return '4xl'
     case 'h2':
-      return 'xxxl'
+      return '3xl'
     case 'h3':
-      return 'xxl'
+      return '2xl'
     case 'h4':
       return 'xl'
     case 'h5':

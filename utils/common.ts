@@ -52,10 +52,10 @@ export function convertKeysToRecord<Key extends PropertyKey>(
 export function pick<T extends AnyRecord, K extends keyof T>(
   obj: T,
   keys: readonly K[],
-): Pick<T, K> {
+): Expand<Pick<T, K>> {
   const reduced: Pick<T, K> = {} as Pick<T, K>
   for (const key of keys) {
     reduced[key] = obj[key]
   }
-  return reduced
+  return reduced as Expand<Pick<T, K>>
 }

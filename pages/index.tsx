@@ -18,16 +18,16 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Box position="absolute" top="xxl" right="xxl">
+      <Box position="absolute" top="2xl" right="2xl">
         <ThemeToggle />
       </Box>
-      <Box p="xxl" spacing="x6l">
+      <Box p="2xl" spacing="6xl">
         <Header
           display="flex"
           flexDirection={{ xs: 'column', sm: 'row' }}
           justifyContent="center"
           alignItems={{ xs: 'center', sm: 'flex-start' }}
-          gap="xxl"
+          gap="2xl"
         >
           <Me flex="rigid" />
           <Box spacing="lg">
