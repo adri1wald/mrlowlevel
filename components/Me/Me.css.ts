@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css'
 import { vars } from '@/styles/theme.css'
+import { rem } from '@/styles/utils'
 
 export const root = style({
   display: 'inline-flex',
@@ -8,8 +9,8 @@ export const root = style({
   verticalAlign: 'middle',
   overflow: 'hidden',
   userSelect: 'none',
-  width: '200px',
-  height: '200px',
+  width: rem(200),
+  height: rem(200),
   borderRadius: '100%',
   backgroundColor: vars.color.palette['black.3'],
 })

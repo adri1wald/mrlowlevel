@@ -15,7 +15,7 @@ const sizes = transformValues(
 export const style = recipe({
   // base button styles
   base: {
-    display: 'inline-flex',
+    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 0,
@@ -25,6 +25,14 @@ export const style = recipe({
     textDecoration: 'none',
     whiteSpace: 'nowrap',
     appearance: 'none',
+    fontWeight: vars.fontWeight.medium,
+    selectors: {
+      '&:disabled, &[data-disabled]': {
+        opacity: 0.5,
+        cursor: 'not-allowed',
+        pointerEvents: 'none',
+      },
+    },
   },
 
   variants: {
@@ -52,6 +60,11 @@ export const style = recipe({
       })),
       pill: {
         borderRadius: rem(99999),
+      },
+    },
+    inline: {
+      true: {
+        display: 'inline-flex',
       },
     },
     variant: {

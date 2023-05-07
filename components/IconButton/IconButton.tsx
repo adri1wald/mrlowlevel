@@ -1,32 +1,57 @@
 import { forwardRef } from 'react'
-import { Slot } from '@radix-ui/react-slot'
 import clsx from 'clsx'
+import { createPolymorphicComponent } from '@/utils/react'
+import { Spread } from '@/utils/types'
 import { StyleProps, style } from './IconButton.css'
+import { Box, BoxProps } from '../Box'
 
-type IconButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
-  StyleProps & {
-    asChild?: boolean
-  }
-
-export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
-  function IconButton(props, ref) {
-    const { asChild, color, size, radius, className, variant, ...buttonProps } =
-      props
-    const Root = asChild ? Slot : 'button'
-    return (
-      <Root
-        {...buttonProps}
-        className={clsx(
-          style({
-            color,
-            size,
-            radius,
-            variant,
-          }),
-          className,
-        )}
-        ref={ref}
-      />
-    )
+export type IconButtonProps = Spread<
+  {
+    disabled?: boolean
   },
+  Spread<StyleProps, BoxProps>
+>
+
+const _IconButton = forwardRef<
+  HTMLButtonElement,
+  IconButtonProps & { as?: any }
+>(function IconButton(props, ref) {
+  const {
+    as = 'button',
+    className,
+    color,
+    size,
+    radius,
+    variant,
+    inline,
+    disabled,
+    ...delegated
+  } = props
+  return (
+    <Box
+      as={as}
+      className={clsx(
+        style({
+          color,
+          size,
+          radius,
+          variant,
+          inline,
+        }),
+        className,
+      )}
+      disabled={disabled}
+      data-disabled={disabled}
+      tabIndex={disabled ? -1 : undefined}
+      type={as === 'button' ? 'button' : undefined}
+      {...delegated}
+      ref={ref}
+    />
+  )
+})
+
+_IconButton.displayName = '@mrlowlevel/IconButton'
+
+export const IconButton = createPolymorphicComponent<'button', IconButtonProps>(
+  _IconButton,
 )

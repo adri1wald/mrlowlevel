@@ -5,31 +5,50 @@ import { Spread } from '@/utils/types'
 import { StyleProps, style } from './Button.css'
 import { Box, BoxProps } from '../Box'
 
-export type ButtonProps = Spread<StyleProps, BoxProps>
+export type ButtonProps = Spread<
+  {
+    disabled?: boolean
+  },
+  Spread<StyleProps, BoxProps>
+>
 
-const _Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  props,
-  ref,
-) {
-  const { className, color, size, radius, variant, ...delegated } = props
+const _Button = forwardRef<HTMLButtonElement, ButtonProps & { as?: any }>(
+  function Button(props, ref) {
+    const {
+      as = 'button',
+      className,
+      color,
+      size,
+      radius,
+      variant,
+      inline,
+      disabled,
+      ...delegated
+    } = props
 
-  return (
-    <Box
-      as="button"
-      className={clsx(
-        style({
-          color,
-          size,
-          radius,
-          variant,
-        }),
-        className,
-      )}
-      {...delegated}
-      ref={ref}
-    />
-  )
-})
+    return (
+      <Box
+        as={as}
+        className={clsx(
+          style({
+            color,
+            size,
+            radius,
+            variant,
+            inline,
+          }),
+          className,
+        )}
+        disabled={disabled}
+        data-disabled={disabled}
+        tabIndex={disabled ? -1 : undefined}
+        type={as === 'button' ? 'button' : undefined}
+        {...delegated}
+        ref={ref}
+      />
+    )
+  },
+)
 
 _Button.displayName = '@mrlowlevel/Button'
 

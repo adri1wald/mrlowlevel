@@ -9,6 +9,7 @@ export type BoxProps = React.PropsWithChildren<
     Sprinkles & {
       className?: string
       spacing?: keyof typeof spacing
+      style?: React.CSSProperties
     }
   >
 >
@@ -21,6 +22,7 @@ const _Box = forwardRef<HTMLDivElement, BoxProps & { as: any }>(function Box(
     as: Component = 'div',
     className,
     spacing: spacingValue,
+    style,
     ...delegated
   } = props
   const sprinklesProps: Record<string, unknown> = {}
@@ -43,6 +45,7 @@ const _Box = forwardRef<HTMLDivElement, BoxProps & { as: any }>(function Box(
         spacingValue && spacing[spacingValue],
         className,
       )}
+      style={style}
     />
   )
 })

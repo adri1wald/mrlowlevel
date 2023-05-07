@@ -82,6 +82,7 @@ export const fontProperties = defineProperties({
     fontFamily: vars.font,
     fontSize: vars.fontSize,
     fontWeight: vars.fontWeight,
+    whiteSpace: ['normal', 'nowrap', 'pre', 'pre-wrap', 'pre-line'],
   },
 })
 

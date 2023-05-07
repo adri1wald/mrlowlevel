@@ -84,30 +84,26 @@ const Home: NextPage = () => {
               alignItems="center"
               gap="sm"
             >
-              <Box>
-                <Button
-                  as="a"
-                  href="https://genei.io"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  size="md"
-                  color="blue"
-                >
-                  Genei
-                </Button>
-              </Box>
-              <Box>
-                <Button
-                  as="a"
-                  href="https://coloop.ai"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  size="md"
-                  color="violet"
-                >
-                  CoLoop
-                </Button>
-              </Box>
+              <Button
+                as="a"
+                href="https://genei.io"
+                target="_blank"
+                rel="noopener noreferrer"
+                size="md"
+                color="blue"
+              >
+                Genei
+              </Button>
+              <Button
+                as="a"
+                href="https://coloop.ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                size="md"
+                color="violet"
+              >
+                CoLoop
+              </Button>
             </Box>
           </Section>
         </Main>

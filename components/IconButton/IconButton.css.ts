@@ -13,13 +13,20 @@ const sizes = transformValues(
 
 export const style = recipe({
   base: {
-    display: 'inline-flex',
+    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 0,
     border: 'none',
     userSelect: 'none',
     cursor: 'pointer',
+    selectors: {
+      '&:disabled, &[data-disabled]': {
+        opacity: 0.5,
+        cursor: 'not-allowed',
+        pointerEvents: 'none',
+      },
+    },
   },
 
   variants: {
@@ -43,6 +50,11 @@ export const style = recipe({
     radius: transformValues(vars.radius, (value) => ({
       borderRadius: value,
     })),
+    inline: {
+      true: {
+        display: 'inline-flex',
+      },
+    },
     variant: {
       transparent: {
         backgroundColor: 'transparent',
