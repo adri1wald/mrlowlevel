@@ -73,11 +73,6 @@ export const fontProperties = defineProperties({
     fontSize: vars.fontSize,
     fontWeight: vars.fontWeight,
   },
-  shorthands: {
-    font: ['fontFamily'],
-    size: ['fontSize'],
-    weight: ['fontWeight'],
-  },
 })
 
 export const colorProperties = defineProperties({

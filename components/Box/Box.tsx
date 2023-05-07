@@ -5,23 +5,25 @@ import { createPolymorphicComponent } from '@/utils/react'
 
 export type BoxProps = React.PropsWithChildren<
   Sprinkles & {
-    as?: React.ElementType
     className?: string
     spacing?: keyof typeof spacing
   }
 >
 
-const _Box = forwardRef<HTMLDivElement, BoxProps>(function Box(props, ref) {
+const _Box = forwardRef<HTMLDivElement, BoxProps & { as: any }>(function Box(
+  props,
+  ref,
+) {
   const {
     as: Component = 'div',
     className,
     spacing: spacingValue,
-    ...rest
+    ...delegated
   } = props
   const sprinklesProps: Record<string, unknown> = {}
   const nativeProps: Record<string, unknown> = {}
 
-  Object.entries(rest).forEach(([key, value]) => {
+  Object.entries(delegated).forEach(([key, value]) => {
     if (sprinkles.properties.has(key as keyof Sprinkles)) {
       sprinklesProps[key] = value
     } else {

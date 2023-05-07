@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { Box } from '@/components/Box'
 import { Me } from '@/components/Me'
+import { Text } from '@/components/Text'
 import { ThemeToggle } from '@/components/ThemeToggle'
 
 const Home: NextPage = () => {
@@ -26,10 +27,7 @@ const Home: NextPage = () => {
         <Me flex="rigid" />
         <Box spacing="lg">
           <div>
-            <Box
-              as="h1"
-              font="heading"
-              size="x4l"
+            <Text.H1
               color="violet.12"
               align={{
                 xs: 'center',
@@ -37,10 +35,8 @@ const Home: NextPage = () => {
               }}
             >
               Adrien Wald
-            </Box>
-            <Box
-              as="h2"
-              font="heading"
+            </Text.H1>
+            <Text.H2
               size="lg"
               color="violet.11"
               align={{
@@ -49,13 +45,11 @@ const Home: NextPage = () => {
               }}
             >
               A.k.a. MrLowLevel
-            </Box>
+            </Text.H2>
           </div>
           <div>
-            <p>Building and exploring in the generative AI space.</p>
-            <Box as="p" color="neutral.11">
-              London, United Kingdom
-            </Box>
+            <Text.P>Building and exploring in the generative AI space.</Text.P>
+            <Text.P color="neutral.11">London, United Kingdom</Text.P>
           </div>
         </Box>
         <Box position="absolute" top="xxl" right="xxl">

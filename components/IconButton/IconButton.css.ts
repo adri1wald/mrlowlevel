@@ -34,8 +34,8 @@ export const style = recipe({
       },
     })),
     size: transformValues(sizes, (value) => ({
-      width: `${value}px`,
-      height: `${value}px`,
+      width: value,
+      height: value,
     })),
     radius: transformValues(vars.radius, (value) => ({
       borderRadius: value,

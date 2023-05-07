@@ -13,7 +13,7 @@ type PropsOf<C extends ElementType> = JSX.LibraryManagedAttributes<
 >
 
 type ComponentProp<C> = {
-  component?: C
+  as?: C
 }
 
 type InheritedProps<C extends ElementType, Props = {}> = ExtendedProps<
@@ -30,7 +30,7 @@ export type PolymorphicComponentProps<
   Props = {},
 > = C extends React.ElementType
   ? InheritedProps<C, Props & ComponentProp<C>> & { ref?: PolymorphicRef<C> }
-  : Props & { component: React.ElementType }
+  : Props & { as: React.ElementType }
 
 export function createPolymorphicComponent<
   ComponentDefaultType,
