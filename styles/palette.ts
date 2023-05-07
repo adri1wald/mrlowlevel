@@ -21,9 +21,9 @@ import { Expand } from '@/utils/types'
 
 type Scale = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 
-type ScaleColor<
+export type ScaleColor<
   Color extends string,
-  ScaleValue extends Scale,
+  ScaleValue extends Scale = Scale,
 > = `${Color}.${ScaleValue}`
 
 export function makeScaleColor<Color extends string, ScaleValue extends Scale>(
@@ -90,6 +90,27 @@ const COLORS_WITH_DARK_FOREGROUND_TEXT = [
 
 export function shouldUseDarkForegroundText(color: Color) {
   return COLORS_WITH_DARK_FOREGROUND_TEXT.includes(color as any)
+}
+
+export function isScaleColor(value: string): value is ScaleColor<Color> {
+  const [color, scaleStr] = value.split('.') as [Color, string]
+  const scale = Number(scaleStr)
+  return (
+    COLORS.includes(color) &&
+    Number.isInteger(scale) &&
+    scale >= 1 &&
+    scale <= 12
+  )
+}
+
+export function getScaleColor(
+  color: Color | ScaleColor<Color>,
+  defaultScale: Scale,
+) {
+  if (isScaleColor(color)) {
+    return color
+  }
+  return makeScaleColor(color, defaultScale)
 }
 
 export const colors = convertKeysToRecord(COLORS)

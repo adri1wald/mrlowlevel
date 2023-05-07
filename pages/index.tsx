@@ -33,7 +33,7 @@ const Home: NextPage = () => {
           <Box spacing="lg">
             <div>
               <Text.H1
-                color="violet.12"
+                color="violet"
                 align={{
                   xs: 'center',
                   sm: 'left',
@@ -43,7 +43,8 @@ const Home: NextPage = () => {
               </Text.H1>
               <Text.H3
                 size="lg"
-                color="violet.11"
+                color="violet"
+                dimmed
                 align={{
                   xs: 'center',
                   sm: 'left',
@@ -62,7 +63,7 @@ const Home: NextPage = () => {
                 Building and exploring in the generative AI space.
               </Text.P>
               <Text.P
-                color="neutral.11"
+                dimmed
                 align={{
                   xs: 'center',
                   sm: 'left',

@@ -1,4 +1,5 @@
 import { forwardRef } from 'react'
+import { Color, ScaleColor, getScaleColor } from '@/styles/palette'
 import { assertNever } from '@/utils/common'
 import { createPolymorphicComponent } from '@/utils/react'
 import { Spread, WithoutKeys } from '@/utils/types'
@@ -13,6 +14,8 @@ export type TextProps = Spread<
     font?: Font
     size?: Size
     weight?: Weight
+    color?: Color | ScaleColor<Color>
+    dimmed?: boolean
   },
   WithoutKeys<BoxProps, 'fontFamily' | 'fontSize' | 'fontWeight'>
 >
@@ -46,12 +49,24 @@ const _TextComponent = forwardRef<
   HTMLParagraphElement,
   TextProps & { as: any }
 >(function Text(props, ref) {
-  const { as = 'p', font, size, weight, ...delegated } = props
+  const {
+    as = 'p',
+    font,
+    size,
+    weight,
+    color = 'neutral',
+    dimmed,
+    ...delegated
+  } = props
 
   const isHeading = isHeadingTag(as)
   const fontFamily: Font = font ?? (isHeading ? 'heading' : 'body')
   const fontSize: Size = size ?? (isHeading ? getHeadingSize(as) : 'md')
   const fontWeight: Weight = weight ?? (isHeading ? 'bold' : 'regular')
+  const resolvedColor: ScaleColor<Color> = getScaleColor(
+    color,
+    dimmed ? 11 : 12,
+  )
 
   return (
     <Box
@@ -60,6 +75,7 @@ const _TextComponent = forwardRef<
       fontFamily={fontFamily}
       fontSize={fontSize}
       fontWeight={fontWeight}
+      color={resolvedColor}
       {...delegated}
     />
   )
