@@ -39,7 +39,8 @@ const Components: NextPage = () => {
 const variants = [
   'subtle',
   'light',
-  'light-cta',
+  'light+',
+  'outline',
   'filled',
 ] satisfies NonNullable<ButtonProps['variant']>[]
 const colors = [
@@ -58,7 +59,7 @@ function Buttons() {
       {variants.map((variant) => (
         <Box key={variant} display="flex" gap="sm">
           {colors.map((color) => (
-            <Button key={color} size="md" variant={variant} color={color}>
+            <Button key={color} size="sm" variant={variant} color={color}>
               Click me
             </Button>
           ))}

@@ -13,21 +13,21 @@ const sizes = transformValues(
   (value) => calc(value).multiply(2).toString(),
 )
 
-const buttonColors = createThemeContract({
+const createEmptyVariant = () => ({
   color: '',
-  subtleBg: '',
-  subtleBgHover: '',
-  subtleBgActive: '',
-  lightBg: '',
-  lightBgHover: '',
-  lightBgActive: '',
-  lightCtaBg: '',
-  lightCtaBgHover: '',
-  lightCtaBgActive: '',
-  filledColor: '',
-  filledBg: '',
-  filledBgHover: '',
-  filledBgActive: '',
+  bg: '',
+  bgHover: '',
+  bgActive: '',
+  border: '',
+  borderHover: '',
+})
+
+const buttonColors = createThemeContract({
+  subtle: createEmptyVariant(),
+  light: createEmptyVariant(),
+  'light+': createEmptyVariant(),
+  filled: createEmptyVariant(),
+  outline: createEmptyVariant(),
 })
 
 export const style = recipe({
@@ -58,26 +58,48 @@ export const style = recipe({
       focusRing[color],
       {
         vars: assignVars(buttonColors, {
-          color: vars.palette.color[getScale(11)],
-
-          subtleBg: 'transparent',
-          subtleBgHover: vars.palette.color[getScale(4)],
-          subtleBgActive: vars.palette.color[getScale(5)],
-
-          lightBg: vars.palette.color[getScale(3)],
-          lightBgHover: vars.palette.color[getScale(4)],
-          lightBgActive: vars.palette.color[getScale(5)],
-
-          lightCtaBg: vars.palette.color[getScale(4)],
-          lightCtaBgHover: vars.palette.color[getScale(5)],
-          lightCtaBgActive: vars.palette.color[getScale(6)],
-
-          filledColor: shouldUseDarkForegroundText(color)
-            ? vars.palette.shades['black.12']
-            : vars.palette.shades['white.12'],
-          filledBg: vars.palette.color[getScale(9)],
-          filledBgHover: vars.palette.color[getScale(10)],
-          filledBgActive: vars.palette.color[getScale(10)],
+          subtle: {
+            color: vars.palette.color[getScale(11)],
+            bg: 'transparent',
+            bgHover: vars.palette.color[getScale(4)],
+            bgActive: vars.palette.color[getScale(5)],
+            border: 'transparent',
+            borderHover: 'transparent',
+          },
+          light: {
+            color: vars.palette.color[getScale(11)],
+            bg: vars.palette.color[getScale(3)],
+            bgHover: vars.palette.color[getScale(4)],
+            bgActive: vars.palette.color[getScale(5)],
+            border: 'transparent',
+            borderHover: 'transparent',
+          },
+          'light+': {
+            color: vars.palette.color[getScale(11)],
+            bg: vars.palette.color[getScale(4)],
+            bgHover: vars.palette.color[getScale(5)],
+            bgActive: vars.palette.color[getScale(6)],
+            border: 'transparent',
+            borderHover: 'transparent',
+          },
+          filled: {
+            color: shouldUseDarkForegroundText(color)
+              ? vars.palette.shades['black.12']
+              : vars.palette.shades['white.12'],
+            bg: vars.palette.color[getScale(9)],
+            bgHover: vars.palette.color[getScale(10)],
+            bgActive: vars.palette.color[getScale(10)],
+            border: 'transparent',
+            borderHover: 'transparent',
+          },
+          outline: {
+            color: vars.palette.color[getScale(11)],
+            bg: vars.palette.color[getScale(2)],
+            bgHover: vars.palette.color[getScale(2)],
+            bgActive: vars.palette.color[getScale(2)],
+            border: vars.palette.color[getScale(7)],
+            borderHover: vars.palette.color[getScale(8)],
+          },
         }),
       },
     ]),
@@ -99,56 +121,20 @@ export const style = recipe({
         display: 'inline-flex',
       },
     },
-    variant: {
-      subtle: {
-        color: buttonColors.color,
-        backgroundColor: buttonColors.subtleBg,
-        selectors: {
-          ['&:not(:disabled):hover, &:not([data-disabled]):hover']: {
-            backgroundColor: buttonColors.subtleBgHover,
-          },
-          ['&:not(:disabled):active, &:not([data-disabled]):active']: {
-            backgroundColor: buttonColors.subtleBgActive,
-          },
+    variant: transformValues(buttonColors, (variant) => ({
+      color: variant.color,
+      backgroundColor: variant.bg,
+      border: `${rem(1)} solid ${variant.border}`,
+      selectors: {
+        ['&:not(:disabled):hover, &:not([data-disabled]):hover']: {
+          backgroundColor: variant.bgHover,
+          borderColor: variant.borderHover,
+        },
+        ['&:not(:disabled):active, &:not([data-disabled]):active']: {
+          backgroundColor: variant.bgActive,
         },
       },
-      light: {
-        color: buttonColors.color,
-        backgroundColor: buttonColors.lightBg,
-        selectors: {
-          ['&:not(:disabled):hover, &:not([data-disabled]):hover']: {
-            backgroundColor: buttonColors.lightBgHover,
-          },
-          ['&:not(:disabled):active, &:not([data-disabled]):active']: {
-            backgroundColor: buttonColors.lightBgActive,
-          },
-        },
-      },
-      'light-cta': {
-        color: buttonColors.color,
-        backgroundColor: buttonColors.lightCtaBg,
-        selectors: {
-          ['&:not(:disabled):hover, &:not([data-disabled]):hover']: {
-            backgroundColor: buttonColors.lightCtaBgHover,
-          },
-          ['&:not(:disabled):active, &:not([data-disabled]):active']: {
-            backgroundColor: buttonColors.lightCtaBgActive,
-          },
-        },
-      },
-      filled: {
-        color: buttonColors.filledColor,
-        backgroundColor: buttonColors.filledBg,
-        selectors: {
-          ['&:not(:disabled):hover, &:not([data-disabled]):hover']: {
-            backgroundColor: buttonColors.filledBgHover,
-          },
-          ['&:not(:disabled):active, &:not([data-disabled]):active']: {
-            backgroundColor: buttonColors.filledBgActive,
-          },
-        },
-      },
-    },
+    })),
   },
 
   defaultVariants: {
