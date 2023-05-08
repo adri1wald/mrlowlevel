@@ -27,4 +27,6 @@ const _Paper = forwardRef<HTMLDivElement, PaperProps>(function Paper(
   )
 })
 
+_Paper.displayName = '@mrlowlevel/Paper'
+
 export const Paper = createPolymorphicComponent<'div', PaperProps>(_Paper)
