@@ -64,7 +64,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           dark: darkTheme,
         }}
       >
-        <Box position="absolute" top="2xl" right="2xl">
+        <Box position="fixed" top="2xl" right="2xl">
           <ThemeToggle />
         </Box>
         <Component {...pageProps} />

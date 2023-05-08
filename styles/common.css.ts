@@ -27,7 +27,6 @@ export const layoutProperties = defineProperties({
     flexDirection: ['row', 'row-reverse', 'column', 'column-reverse'],
     flexWrap: ['nowrap', 'wrap', 'wrap-reverse'],
     alignItems: ['stretch', 'flex-start', 'flex-end', 'center', 'baseline'],
-    textAlign: ['left', 'center', 'right', 'justify'],
     flex: {
       rigid: '0 0 auto',
       fluid: '1 1 0',
@@ -56,6 +55,10 @@ export const layoutProperties = defineProperties({
     left: vars.spacing,
     inset: vars.spacing,
     gap: vars.spacing,
+    overflow: ['visible', 'hidden', 'scroll', 'auto'],
+    overflowX: ['visible', 'hidden', 'scroll', 'auto'],
+    overflowY: ['visible', 'hidden', 'scroll', 'auto'],
+    textAlign: ['left', 'center', 'right', 'justify'],
     // derived from tailwindcss --- start
     width: {
       ...vars.size.absolute,
@@ -134,13 +137,6 @@ export const layoutProperties = defineProperties({
     pb: ['paddingBottom'],
     pl: ['paddingLeft'],
     placeItems: ['alignItems', 'justifyContent'],
-    align: ['textAlign'],
-    w: ['width'],
-    minW: ['minWidth'],
-    maxW: ['maxWidth'],
-    h: ['height'],
-    minH: ['minHeight'],
-    maxH: ['maxHeight'],
   },
 })
 

@@ -8,16 +8,18 @@ import { Box, BoxProps } from '../Box'
 type Font = NonNullable<BoxProps['fontFamily']>
 type Size = NonNullable<BoxProps['fontSize']>
 type Weight = NonNullable<BoxProps['fontWeight']>
+type Align = NonNullable<BoxProps['textAlign']>
 
 export type TextProps = Spread<
   {
     font?: Font
     size?: Size
     weight?: Weight
+    align?: Align
     color?: Color | ScaleColor<Color>
     dimmed?: boolean
   },
-  WithoutKeys<BoxProps, 'fontFamily' | 'fontSize' | 'fontWeight'>
+  WithoutKeys<BoxProps, 'fontFamily' | 'fontSize' | 'fontWeight' | 'textAlign'>
 >
 
 type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
@@ -49,7 +51,16 @@ const _TextComponent = forwardRef<
   HTMLParagraphElement,
   TextProps & { as: any }
 >(function Text(props, ref) {
-  const { as = 'p', font, size, weight, color, dimmed, ...delegated } = props
+  const {
+    as = 'p',
+    font,
+    size,
+    weight,
+    color,
+    align,
+    dimmed,
+    ...delegated
+  } = props
 
   const isHeading = isHeadingTag(as)
   const fontFamily: Font = font ?? (isHeading ? 'heading' : 'body')
@@ -67,6 +78,7 @@ const _TextComponent = forwardRef<
       fontFamily={fontFamily}
       fontSize={fontSize}
       fontWeight={fontWeight}
+      textAlign={align}
       color={resolvedColor}
       {...delegated}
     />

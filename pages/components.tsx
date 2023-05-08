@@ -15,15 +15,15 @@ const Components: NextPage = () => {
           content="Component library for MrLowLevel's website"
         />
       </Head>
-      <Box p="2xl" spacing="6xl">
+      <Box p="2xl" spacing="5xl">
         <Header>
           <Text.H1 align="center" color="violet">
             Components
           </Text.H1>
         </Header>
         <Main>
-          <Section display="flex" flexDirection="column" alignItems="center">
-            <Box spacing="xl">
+          <Section>
+            <Box spacing="xl" mx="auto" maxWidth="fit">
               <Text.H2 color="violet" dimmed size="xl">
                 Buttons
               </Text.H2>
@@ -55,16 +55,18 @@ const colors = [
 
 function Buttons() {
   return (
-    <Box display="flex" gap="sm" flexDirection="column">
-      {variants.map((variant) => (
-        <Box key={variant} display="flex" gap="sm">
-          {colors.map((color) => (
-            <Button key={color} size="sm" variant={variant} color={color}>
-              Click me
-            </Button>
-          ))}
-        </Box>
-      ))}
+    <Box maxWidth="full" overflowX="auto">
+      <Box display="flex" gap="sm" flexDirection="column">
+        {variants.map((variant) => (
+          <Box key={variant} display="flex" gap="sm">
+            {colors.map((color) => (
+              <Button key={color} size="sm" variant={variant} color={color}>
+                Click me
+              </Button>
+            ))}
+          </Box>
+        ))}
+      </Box>
     </Box>
   )
 }
