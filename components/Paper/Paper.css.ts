@@ -7,8 +7,9 @@ import { Expand } from '@/utils/types'
 
 export const style = recipe({
   variants: {
-    color: mapColors((getScale) => ({
-      backgroundColor: vars.palette.color[getScale(1)],
+    color: mapColors((getScale, color) => ({
+      backgroundColor:
+        color === 'neutral' ? undefined : vars.palette.color[getScale(1)],
       border: `${rem(1)} solid ${vars.palette.color[getScale(6)]}`,
     })),
     radius: transformValues(vars.radius, (value) => ({
