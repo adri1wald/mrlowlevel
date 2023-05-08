@@ -107,7 +107,7 @@ const Home: NextPage = () => {
                     </Text.P>
                     <Text.P color="blue" size="sm">
                       Users upload raw transcript or audio / video files to
-                      CoLoop. CoLoop uses AI to convert thse into structured
+                      CoLoop. CoLoop uses AI to convert these into structured
                       transcripts, which are made available for analysis through
                       a powerful ChatGPT-like interface, as well as an
                       AI-automated analysis grid.
