@@ -5,7 +5,6 @@ import { Button } from '@/components/Button'
 import { Me } from '@/components/Me'
 import { Header, Main, Section } from '@/components/Semantic'
 import { Text } from '@/components/Text'
-import { ThemeToggle } from '@/components/ThemeToggle'
 
 const Home: NextPage = () => {
   return (
@@ -18,9 +17,6 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Box position="absolute" top="2xl" right="2xl">
-        <ThemeToggle />
-      </Box>
       <Box p="2xl" spacing="6xl">
         <Header
           display="flex"

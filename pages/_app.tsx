@@ -2,6 +2,8 @@ import { ThemeProvider } from 'next-themes'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { Open_Sans, Playfair_Display } from '@next/font/google'
+import { Box } from '@/components/Box'
+import { ThemeToggle } from '@/components/ThemeToggle'
 import '@/styles/global.css'
 import '@/styles/theme.css'
 import {
@@ -62,6 +64,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           dark: darkTheme,
         }}
       >
+        <Box position="absolute" top="2xl" right="2xl">
+          <ThemeToggle />
+        </Box>
         <Component {...pageProps} />
       </ThemeProvider>
     </>
