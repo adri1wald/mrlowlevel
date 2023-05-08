@@ -5,17 +5,12 @@ import {
   createVar,
   globalStyle,
 } from '@vanilla-extract/css'
-import { getVarName } from '@vanilla-extract/private'
 import { TYPOGRAPHIC_SCALE_BASE, TYPOGRAPHIC_SCALE_FACTOR } from './constants'
 import * as palette from './palette'
 import { TypographicScale } from './typography'
 import { percent, rem } from './utils'
 
-const PlayfairDisplayVar = createVar()
-const OpenSansVar = createVar()
-
-export const PlayfairDisplay = getVarName(PlayfairDisplayVar)
-export const OpenSans = getVarName(OpenSansVar)
+type CSSVarFunction = ReturnType<typeof createVar>
 
 const typographicScale = new TypographicScale(TYPOGRAPHIC_SCALE_FACTOR).intoRem(
   TYPOGRAPHIC_SCALE_BASE,
@@ -158,8 +153,8 @@ const root = createGlobalTheme(':root', {
     named: namedSizes,
   },
   font: {
-    heading: PlayfairDisplayVar,
-    body: OpenSansVar,
+    heading: 'var(--font-playfair-display)' satisfies CSSVarFunction,
+    body: 'var(--font-open-sans)' satisfies CSSVarFunction,
   },
   palette: {
     shades: palette.shades,

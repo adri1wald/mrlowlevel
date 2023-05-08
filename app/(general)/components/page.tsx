@@ -1,4 +1,4 @@
-import { NextPage } from 'next'
+import { Metadata, NextPage } from 'next'
 import Head from 'next/head'
 import { IconPlus } from '@tabler/icons-react'
 import { Box } from '@/components/Box'
@@ -117,6 +117,10 @@ function IconButtons() {
       </Box>
     </Box>
   )
+}
+
+export const metadata: Metadata = {
+  title: 'Components',
 }
 
 export default Components
