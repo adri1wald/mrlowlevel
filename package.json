@@ -12,7 +12,6 @@
     "dev:typecheck": "tsc --pretty --noEmit --watch"
   },
   "dependencies": {
-    "@next/font": "^13.1.6",
     "@radix-ui/colors": "^0.1.8",
     "@radix-ui/react-avatar": "^1.0.1",
     "@radix-ui/react-slot": "^1.0.1",
