@@ -1,6 +1,5 @@
 import { forwardRef } from 'react'
 import { Color, ScaleColor, getScaleColor } from '@/styles/palette'
-import { assertNever } from '@/utils/common'
 import { createPolymorphicComponent } from '@/utils/react'
 import { Spread, WithoutKeys } from '@/utils/types'
 import { Box, BoxProps } from '../Box'
@@ -22,13 +21,23 @@ export type TextProps = Spread<
   WithoutKeys<BoxProps, 'fontFamily' | 'fontSize' | 'fontWeight' | 'textAlign'>
 >
 
-type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-
-function isHeadingTag(tag: string): tag is HeadingTag {
-  return ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(tag)
+function getFont(tag: unknown): Font | undefined {
+  switch (tag) {
+    case 'h1':
+    case 'h2':
+    case 'h3':
+    case 'h4':
+    case 'h5':
+    case 'h6':
+      return 'heading'
+    case 'p':
+      return 'body'
+    default:
+      return undefined
+  }
 }
 
-function getHeadingSize(tag: HeadingTag): Size {
+function getSize(tag: unknown): Size | undefined {
   switch (tag) {
     case 'h1':
       return '4xl'
@@ -42,8 +51,42 @@ function getHeadingSize(tag: HeadingTag): Size {
       return 'lg'
     case 'h6':
       return 'md'
+    case 'p':
+      return 'md'
     default:
-      assertNever(tag)
+      return undefined
+  }
+}
+
+function getWeight(tag: unknown): Weight | undefined {
+  switch (tag) {
+    case 'h1':
+    case 'h2':
+    case 'h3':
+    case 'h4':
+    case 'h5':
+    case 'h6':
+      return 'bold'
+    case 'p':
+      return 'regular'
+    default:
+      return undefined
+  }
+}
+
+function getColor(tag: unknown): Color | undefined {
+  switch (tag) {
+    case 'h1':
+    case 'h2':
+    case 'h3':
+    case 'h4':
+    case 'h5':
+    case 'h6':
+      return 'violet'
+    case 'p':
+      return 'neutral'
+    default:
+      return undefined
   }
 }
 
@@ -62,14 +105,13 @@ const _TextComponent = forwardRef<
     ...delegated
   } = props
 
-  const isHeading = isHeadingTag(as)
-  const fontFamily: Font = font ?? (isHeading ? 'heading' : 'body')
-  const fontSize: Size = size ?? (isHeading ? getHeadingSize(as) : 'md')
-  const fontWeight: Weight = weight ?? (isHeading ? 'bold' : 'regular')
-  const resolvedColor: ScaleColor<Color> = getScaleColor(
-    color ?? (isHeading ? 'violet' : 'neutral'),
-    dimmed ? 11 : 12,
-  )
+  const fontFamily = font ?? getFont(as)
+  const fontSize = size ?? getSize(as)
+  const fontWeight = weight ?? getWeight(as)
+  const defaultedColor = color ?? getColor(as)
+  const resolvedColor = defaultedColor
+    ? getScaleColor(defaultedColor, dimmed ? 11 : 12)
+    : undefined
 
   return (
     <Box

@@ -59,6 +59,7 @@ export const layoutProperties = defineProperties({
     overflowX: ['visible', 'hidden', 'scroll', 'auto'],
     overflowY: ['visible', 'hidden', 'scroll', 'auto'],
     textAlign: ['left', 'center', 'right', 'justify'],
+    lineHeight: [1, 1.25, 1.5, 1.75, 2],
     // derived from tailwindcss --- start
     width: {
       ...vars.size.absolute,

@@ -120,6 +120,10 @@ export const style = recipe({
       true: {
         display: 'inline-flex',
       },
+      false: {
+        display: 'flex',
+        width: 'fit-content',
+      },
     },
     variant: transformValues(buttonColors, (variant) => ({
       color: variant.color,
@@ -142,6 +146,7 @@ export const style = recipe({
     size: 'md',
     radius: 'sm',
     variant: 'light',
+    inline: false,
   },
 })
 
