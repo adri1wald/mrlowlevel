@@ -22,10 +22,10 @@
     "@vanilla-extract/recipes": "^0.4.0",
     "@vanilla-extract/sprinkles": "^1.6.0",
     "clsx": "^1.2.1",
-    "next": "13.1.6",
+    "next": "^13.4.1",
     "next-themes": "^0.2.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
@@ -33,7 +33,7 @@
     "@types/react": "18.0.28",
     "@vanilla-extract/next-plugin": "^2.1.2",
     "eslint": "8.34.0",
-    "eslint-config-next": "13.1.6",
+    "eslint-config-next": "^13.4.1",
     "eslint-config-prettier": "^8.6.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.2",
